@@ -19,7 +19,7 @@ const Navbar = ({ isSearchEnabled, onSearchSubmit, setSearchQuery }) => {
     <div className="navbar-container" >
       <nav className="navbar navbar-expand-lg navbar-dark fixed-top"  style={{ background: "BLACK" }}>
         <div className="container">
-          <a className="navbar-brand" href="#">Your Logo</a>
+          <a className="navbar-brand" href="#">Pc Ara</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -42,7 +42,7 @@ const Navbar = ({ isSearchEnabled, onSearchSubmit, setSearchQuery }) => {
                   type="submit"
                   disabled={!isSearchEnabled && !searchQueryLocal}
                 >
-                  Search
+                  ara
                 </button>
               </div>
             </form>
