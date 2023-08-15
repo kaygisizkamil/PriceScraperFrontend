@@ -1,15 +1,21 @@
+// ScreenSizeOptions component
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
 const API_URI = 'http://localhost:5000';
 
-
-const ScreenSizeOptions = ({ selectedBrand, onSelectScreenSize }) => {
+const ScreenSizeOptions = ({ selectedBrand, selectedScreenSizes, onSelectScreenSize }) => {
   const [screenSizeOptions, setScreenSizeOptions] = useState([]);
 
   useEffect(() => {
     if (selectedBrand) {
       fetchScreenSizeOptions(selectedBrand);
     }
+  }, [selectedBrand]);
+
+  useEffect(() => {
+    // Reset checkbox selections when brand changes
+    setScreenSizeOptions([]);
   }, [selectedBrand]);
 
   const fetchScreenSizeOptions = async (brand) => {
@@ -21,8 +27,8 @@ const ScreenSizeOptions = ({ selectedBrand, onSelectScreenSize }) => {
     }
   };
 
-  const handleScreenSizeSelect = (screenSize) => {
-    onSelectScreenSize(screenSize);
+  const handleScreenSizeSelect = (size) => {
+    onSelectScreenSize(size);
   };
 
   return (
@@ -36,6 +42,7 @@ const ScreenSizeOptions = ({ selectedBrand, onSelectScreenSize }) => {
               value={size}
               onChange={() => handleScreenSizeSelect(size)}
               className="form-check-input me-2"
+              checked={selectedScreenSizes.includes(size)} // Set the checked state based on selectedScreenSizes
             />
             <span className="text-sm">{size}</span>
           </label>
@@ -43,5 +50,6 @@ const ScreenSizeOptions = ({ selectedBrand, onSelectScreenSize }) => {
       </div>
     </div>
   );
-        };
-  export default ScreenSizeOptions;
+};
+
+export default ScreenSizeOptions;

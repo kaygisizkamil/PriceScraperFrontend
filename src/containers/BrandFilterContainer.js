@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BrandFilter from '../components/BrandFilter';
 
 import ProcessorOptions from '../components/ProcessorOptions'; // Import the ProcessorOptions component
@@ -7,17 +7,28 @@ import ScreenSizeOptions from '../components/ScreenSizeOptions';
 import Navbar from '../components/Navbar';
 import ProductList from '../components/ProductList';
 import CheapestProducts from '../util/CheapestProducts';
+import PriceIntervalOptions from '../components/PriceIntervalOptions';
+import SelectedValuesResults from '../components/SelectedValuesResults';
+
 const BrandFilterContainer = () => {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedProcessors, setSelectedProcessors] = useState([]);
   const [selectedRams, setSelectedRams] = useState([]);
   const [selectedScreenSizes, setSelectedScreenSizes] = useState([]);
-  const [searchQuery, setSearchQuery] = useState(''); // State for search query
+  const [selectedPriceInterval, setSelectedPriceInterval] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showSelectedValues, setShowSelectedValues] = useState(false); // State for button click
 
-  
+
+  useEffect(() => {
+    // Reset selected values when brand changes
+    setSelectedProcessors([]);
+    setSelectedRams([]);
+    setSelectedScreenSizes([]);
+    setSelectedPriceInterval([]);
+  }, [selectedBrands]);
+
   const handleSearchSubmit = (searchQuery) => {
-    // Perform API request using selected filters and searchQuery
-    // Log the search query and selected filters
     console.table({
       'Search Query': searchQuery,
       'Selected Brands': selectedBrands,
@@ -25,8 +36,7 @@ const BrandFilterContainer = () => {
       'Selected Rams': selectedRams,
       'Selected Screen Sizes': selectedScreenSizes,
     });
-  
-    // You can also call your API request here
+    // Perform your API request here
   };
 
   const handleBrandSelect = (brand) => {
@@ -60,68 +70,62 @@ const BrandFilterContainer = () => {
       setSelectedScreenSizes([...selectedScreenSizes, screenSize]);
     }
   };
-  
+
+  const handlePriceIntervalSelect = (minPrice, maxPrice) => {
+    setSelectedPriceInterval([minPrice, maxPrice]);
+  };
+
+  const handleShowSelectedValues = () => {
+    setShowSelectedValues(true);
+  };
 
   return (
-   <div className="container-fluid">
-  <Navbar
-    isSearchEnabled={selectedBrands.length > 0}
-    onSearchSubmit={handleSearchSubmit}
-    setSearchQuery={setSearchQuery}
-  />
-  <div className="row">
-    {/* Sidebar */}
-    <div className="col-md-2 sidenav" style={{ marginTop: '40px' }}>
-      <div className="border rounded-lg p-2 mt-3" style={{ maxWidth: '200px', height: 'calc(100vh - 100px)', overflowY: 'auto',position:'fixed' }}>
-        <BrandFilter
-          brands={selectedBrands}
-          onSelectBrand={handleBrandSelect}
-        />
-        {selectedBrands.length > 0 && (
-          <ProcessorOptions
-            selectedBrand={selectedBrands[0]}
-            selectedProcessors={selectedProcessors}
-            onSelectProcessor={handleProcessorSelect}
-          />
-        )}
-        {selectedBrands.length > 0 && (
-          <RamOptions
-            selectedBrand={selectedBrands[0]}
-            selectedRams={selectedRams}
-            onSelectRam={handleRamSelect}
-          />
-        )}
-        {selectedBrands.length > 0 && (
-          <ScreenSizeOptions
-            selectedBrand={selectedBrands[0]}
-            selectedScreenSizes={selectedScreenSizes}
-            onSelectScreenSize={handleScreenSizeSelect}
-          />
-        )}
-        {/* Other filter options */}
+    <div className="container-fluid">
+      <Navbar
+        isSearchEnabled={selectedBrands.length > 0}
+        onSearchSubmit={handleSearchSubmit}
+        setSearchQuery={setSearchQuery}
+      />
+      <div className="row">
+        <div className="col-md-2 sidenav" style={{ marginTop: '40px' }}>
+          <div className="border rounded-lg p-2 mt-3" style={{ maxWidth: '200px', height: 'calc(100vh - 100px)', overflowY: 'auto', position: 'fixed' }}>
+            <BrandFilter brands={selectedBrands} onSelectBrand={handleBrandSelect} />
+            {selectedBrands.length > 0 && (
+              <ProcessorOptions selectedBrand={selectedBrands[0]} selectedProcessors={selectedProcessors} onSelectProcessor={handleProcessorSelect} />
+            )}
+            {selectedBrands.length > 0 && (
+              <RamOptions selectedBrand={selectedBrands[0]} selectedRams={selectedRams} onSelectRam={handleRamSelect} />
+            )}
+            {selectedBrands.length > 0 && (
+              <ScreenSizeOptions selectedBrand={selectedBrands[0]} selectedScreenSizes={selectedScreenSizes} onSelectScreenSize={handleScreenSizeSelect} />
+            )}
+            {selectedBrands.length > 0 && (
+              <PriceIntervalOptions selectedBrand={selectedBrands[0]}  onSelectPriceInterval={handlePriceIntervalSelect} />
+            )}
+            <button onClick={handleShowSelectedValues}>Show Selected Values</button>
+          </div>
+        </div>
+        <div className="col-md-10">
+          <div className="container">
+            {showSelectedValues ? (
+              <SelectedValuesResults
+                selectedValues={{
+                  brands: selectedBrands,
+                  processors: selectedProcessors,
+                  rams: selectedRams,
+                  screenSizes: selectedScreenSizes,
+                  priceInterval: selectedPriceInterval,
+                }}
+              />
+            ) : (
+              <CheapestProducts />
+            )}
+          </div>
+        </div>
       </div>
     </div>
-
-    {/* Main Content */}
-    <div className="col-md-10">
-      <div className="container">
-        {/* Content */}
-        <ProductList
-          searchQuery={searchQuery}
-          selectedFilters={{
-            selectedBrands,
-            selectedProcessors,
-            selectedRams,
-            selectedScreenSizes,
-          }}
-        />
-        <CheapestProducts />
-      </div>
-    </div>
-  </div>
-</div>
-
   );
-};
+            };  
+
 
 export default BrandFilterContainer;

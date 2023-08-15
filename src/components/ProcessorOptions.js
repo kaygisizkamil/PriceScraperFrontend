@@ -1,15 +1,21 @@
+// ProcessorOptions component
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const API_URI = 'http://localhost:5000';
 
-const ProcessorOptions = ({ selectedBrand, onSelectProcessor }) => {
+const ProcessorOptions = ({ selectedBrand, selectedProcessors, onSelectProcessor }) => {
   const [processorOptions, setProcessorOptions] = useState([]);
 
   useEffect(() => {
     if (selectedBrand) {
       fetchProcessorOptions(selectedBrand);
     }
+  }, [selectedBrand]);
+
+  useEffect(() => {
+    // Reset checkbox selections when brand changes
+    setProcessorOptions([]);
   }, [selectedBrand]);
 
   const fetchProcessorOptions = async (brand) => {
@@ -36,6 +42,7 @@ const ProcessorOptions = ({ selectedBrand, onSelectProcessor }) => {
               value={processor}
               onChange={() => handleProcessorSelect(processor)}
               className="form-check-input me-2"
+              checked={selectedProcessors.includes(processor)} // Set the checked state based on selectedProcessors
             />
             <span className="text-sm">{processor}</span>
           </label>
