@@ -17,7 +17,7 @@ const Image = styled.img`
 const ProductCard = styled.div`
   margin-bottom: 20px;
 `;
-const CheapestProducts = () => {
+const CheapestProducts = ({ searchQuery }) => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSortOption, setSelectedSortOption] = useState('ascendive_price');
@@ -26,21 +26,28 @@ const CheapestProducts = () => {
 
   const itemsPerPage = 20;
 
+  
   const fetchProducts = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/aggregated/cheapest/getall?page=${currentPage}&sort=${selectedSortOption}`);
+      let response;
+
+      if (searchQuery) { // If there's a search query, fetch matched data
+        response = await axios.get(`http://localhost:5000/api/aggregated/matched/getall?page=${currentPage}&sort=${selectedSortOption}&query=${searchQuery}`);
+      } else { // Otherwise, fetch cheapest data
+        response = await axios.get(`http://localhost:5000/api/aggregated/cheapest/getall?page=${currentPage}&sort=${selectedSortOption}`);
+      }
+
       const productsData = response.data;
       setProducts(productsData);
       setHasMoreProducts(productsData.length >= itemsPerPage);
-
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-  }, [currentPage, selectedSortOption]);
+  }, [currentPage, selectedSortOption, searchQuery]); // Include searchQuery as a dependency
 
   useEffect(() => {
     fetchProducts();
-  }, [fetchProducts]);
+  }, [fetchProducts],searchQuery);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -64,12 +71,12 @@ const CheapestProducts = () => {
             }}
 
           >
-            <option value="ascendive_price">Ascending Price</option>
-            <option value="descending_price">Descending Price</option>
-            <option value="ascendive_review_count">Ascending Review Score</option>
-            <option value="descendive_review_count">Descending Review Score</option>
-            <option value="ascendive_review_rating">Ascending Review Rating</option>
-            <option value="descendive_review_rating">Descending Review Rating</option>
+            <option value="ascendive_price">Artan Fiyat </option>
+            <option value="descending_price">Azalan Fiyat </option>
+            <option value="ascendive_review_count">Artan degerlendirme puani</option>
+            <option value="descendive_review_count">Azalan degerlendirme puani</option>
+            <option value="ascendive_review_rating">Artan Degierlendirme Sayisi</option>
+            <option value="descendive_review_rating">Azalan Degerlendirme Sayisi</option>
           </select>
         </div>
       </div>

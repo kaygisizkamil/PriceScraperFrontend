@@ -9,6 +9,8 @@ import ProductList from '../components/ProductList';
 import CheapestProducts from '../util/CheapestProducts';
 import PriceIntervalOptions from '../components/PriceIntervalOptions';
 import SelectedValuesResults from '../components/SelectedValuesResults';
+import { useNavigate } from 'react-router-dom';
+
 
 const BrandFilterContainer = () => {
   const [selectedBrands, setSelectedBrands] = useState([]);
@@ -18,27 +20,26 @@ const BrandFilterContainer = () => {
   const [selectedPriceInterval, setSelectedPriceInterval] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [showSelectedValues, setShowSelectedValues] = useState(false); // State for button click
+ // const navigate = useNavigate(); // Initialize the navigate function
 
 
   useEffect(() => {
-    // Reset selected values when brand changes
+    // Reset selected values when brand changes but now we dont really need that
     setSelectedProcessors([]);
     setSelectedRams([]);
     setSelectedScreenSizes([]);
     setSelectedPriceInterval([]);
   }, [selectedBrands]);
 
-  const handleSearchSubmit = (searchQuery) => {
-    console.table({
-      'Search Query': searchQuery,
-      'Selected Brands': selectedBrands,
-      'Selected Processors': selectedProcessors,
-      'Selected Rams': selectedRams,
-      'Selected Screen Sizes': selectedScreenSizes,
-    });
-    // Perform your API request here
+  const handleSearchSubmit = (newSearchQuery) => {
+    setSearchQuery(newSearchQuery);
+    setShowSelectedValues(false); // Reset the flag to show selected values
   };
 
+ /* 'Selected Brands': selectedBrands,
+      'Selected Processors': selectedProcessors,
+      'Selected Rams': selectedRams,
+      'Selected Screen Sizes': selectedScreenSizes,*/
   const handleBrandSelect = (brand) => {
     if (selectedBrands.includes(brand)) {
       setSelectedBrands(selectedBrands.filter((b) => b !== brand));
@@ -81,11 +82,12 @@ const BrandFilterContainer = () => {
 
   return (
     <div className="container-fluid">
-      <Navbar
-        isSearchEnabled={selectedBrands.length > 0}
+       <Navbar
+        selectedBrands={selectedBrands}
+        selectedRams={selectedRams}
         onSearchSubmit={handleSearchSubmit}
         setSearchQuery={setSearchQuery}
-      />
+    />
       <div className="row">
         <div className="col-md-2 sidenav" style={{ marginTop: '40px' }}>
           <div className="border rounded-lg p-2 mt-3" style={{ maxWidth: '200px', height: 'calc(100vh - 100px)', overflowY: 'auto', position: 'fixed' }}>
@@ -118,8 +120,8 @@ const BrandFilterContainer = () => {
                 }}
               />
             ) : (
-              <CheapestProducts />
-            )}
+              <CheapestProducts searchQuery={searchQuery} />
+              )}
           </div>
         </div>
       </div>

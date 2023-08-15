@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Navbar = ({ isSearchEnabled, onSearchSubmit, setSearchQuery }) => {
+const Navbar = ({ onSearchSubmit }) => {
   const [searchQueryLocal, setSearchQueryLocal] = useState('');
 
   const handleSearchInputChange = (event) => {
@@ -9,8 +9,7 @@ const Navbar = ({ isSearchEnabled, onSearchSubmit, setSearchQuery }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (isSearchEnabled && searchQueryLocal) {
-      setSearchQuery(searchQueryLocal); // Update the searchQuery in the parent component
+    if (searchQueryLocal) {
       onSearchSubmit(searchQueryLocal); // Call the provided callback with search query
     }
   };
@@ -40,7 +39,7 @@ const Navbar = ({ isSearchEnabled, onSearchSubmit, setSearchQuery }) => {
                 <button
                   className="btn btn-outline-light"
                   type="submit"
-                  disabled={!isSearchEnabled && !searchQueryLocal}
+                 // disabled={!isSearchEnabled && !searchQueryLocal}
                 >
                   ara
                 </button>
