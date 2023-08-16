@@ -34,6 +34,13 @@ const BrandFilterContainer = () => {
   const handleSearchSubmit = (newSearchQuery) => {
     setSearchQuery(newSearchQuery);
     setShowSelectedValues(false); // Reset the flag to show selected values
+
+    // Reset the selected values on the left side
+    setSelectedBrands([]);
+    setSelectedProcessors([]);
+    setSelectedRams([]);
+    setSelectedScreenSizes([]);
+    setSelectedPriceInterval([]); // Reset the flag to show selected values
   };
 
  /* 'Selected Brands': selectedBrands,
