@@ -6,7 +6,7 @@ import RamOptions from '../components/RamOptions';
 import ScreenSizeOptions from '../components/ScreenSizeOptions';
 import Navbar from '../components/Navbar';
 import ProductList from '../components/ProductList';
-import CheapestProducts from '../util/CheapestProducts';
+import CheapestProducts from '../util/ShowProducts';
 import PriceIntervalOptions from '../components/PriceIntervalOptions';
 import SelectedValuesResults from '../components/SelectedValuesResults';
 import { useNavigate } from 'react-router-dom';

@@ -97,7 +97,7 @@ const SelectedValuesResults = ({ selectedValues }) => {
                   <h5 className="card-title">{result.name}</h5>
                   <p className="card-text product-details" style={{ fontSize: '0.8rem' }}>
                     <span className="text-muted">Ürün:</span> {result.product_name} <br/>
-                    <span className="text-muted">Marka:</span> {result.brand_name} TL <br/>
+                    <span className="text-muted">Marka:</span> {result.brand_name}  <br/>
                     <span className="text-muted">Fiyat:</span> {result.price} TL <br/>
                     <span className="text-muted">Kaynak:</span> {result.fromWhere} <br/>
                     <span className="text-muted">İşlemci:</span> {result.cpu} <br/>
