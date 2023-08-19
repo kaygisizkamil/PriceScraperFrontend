@@ -17,7 +17,7 @@ const Image = styled.img`
 const ProductCard = styled.div`
   margin-bottom: 20px;
 `;
-const API_URI = 'https://dpg-cjfvl8k1ja0c73e36sr0-a.oregon-postgres.render.com';
+const API_URI = 'https://0.0.0.0:1000';
 
 const CheapestProducts = ({ searchQuery }) => {
   const [products, setProducts] = useState([]);
