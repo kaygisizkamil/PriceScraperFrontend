@@ -17,6 +17,7 @@ const Image = styled.img`
 const ProductCard = styled.div`
   margin-bottom: 20px;
 `;
+const API_URI = 'https://dpg-cjfvl8k1ja0c73e36sr0-a.oregon-postgres.render.com';
 const CheapestProducts = ({ searchQuery }) => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,9 +33,9 @@ const CheapestProducts = ({ searchQuery }) => {
       let response;
 
       if (searchQuery) { // If there's a search query, fetch matched data
-        response = await axios.get(`http://localhost:5000/api/aggregated/matched/getall?page=${currentPage}&sort=${selectedSortOption}&query=${searchQuery}`);
+        response = await axios.get(`${API_URI}/api/aggregated/matched/getall?page=${currentPage}&sort=${selectedSortOption}&query=${searchQuery}`);
       } else { // Otherwise, fetch cheapest data
-        response = await axios.get(`http://localhost:5000/api/aggregated/cheapest/getall?page=${currentPage}&sort=${selectedSortOption}`);
+        response = await axios.get(`${API_URI}/api/aggregated/cheapest/getall?page=${currentPage}&sort=${selectedSortOption}`);
       }
 
       const productsData = response.data;

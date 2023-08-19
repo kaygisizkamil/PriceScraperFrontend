@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
-
+const API_URI = 'https://dpg-cjfvl8k1ja0c73e36sr0-a.oregon-postgres.render.com';
 
 const SelectedValuesResults = ({ selectedValues }) => {
   const [results, setResults] = useState([]);
@@ -38,7 +38,7 @@ const SelectedValuesResults = ({ selectedValues }) => {
           sort: selectedSortOption,
         }).toString();
 
-        const response = await axios.get(`http://localhost:5000/api/aggregated/sidebar/getall?${queryString}`);
+        const response = await axios.get(`${API_URI}/api/aggregated/sidebar/getall?${queryString}`);
         const data = response.data;
         setResults(data);
         setHasMoreProducts(data.length >= itemsPerPage);

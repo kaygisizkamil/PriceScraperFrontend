@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URI = 'http://localhost:5000';
-
+const API_URI = 'https://dpg-cjfvl8k1ja0c73e36sr0-a.oregon-postgres.render.com';
 const ScreenSizeOptions = ({ selectedBrand, selectedScreenSizes, onSelectScreenSize }) => {
   const [screenSizeOptions, setScreenSizeOptions] = useState([]);
 
