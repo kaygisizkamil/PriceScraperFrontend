@@ -17,7 +17,7 @@ const Image = styled.img`
 const ProductCard = styled.div`
   margin-bottom: 20px;
 `;
-const API_URI = 'https://35.160.120.126';
+const API_URI = 'http://0.0.0.0:1000';
 
 const CheapestProducts = ({ searchQuery }) => {
   const [products, setProducts] = useState([]);
