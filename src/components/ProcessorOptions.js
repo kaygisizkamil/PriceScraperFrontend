@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 //const API_URI = 'https://dpg-cjfvl8k1ja0c73e36sr0-a.oregon-postgres.render.com';
-const API_URI='http://dpg-cjfvl8k1ja0c73e36sr0-a/5432'
+
+const API_URI='postgres://admin:80s7caMIowdQutwg7MxwBmaRnIPJ86ri@dpg-cjfvl8k1ja0c73e36sr0-a.oregon-postgres.render.com/final_project_f04r'
 const ProcessorOptions = ({ selectedBrand, selectedProcessors, onSelectProcessor }) => {
   const [processorOptions, setProcessorOptions] = useState([]);
 
