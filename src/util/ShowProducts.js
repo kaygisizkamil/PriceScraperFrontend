@@ -17,7 +17,7 @@ const Image = styled.img`
 const ProductCard = styled.div`
   margin-bottom: 20px;
 `;
-const API_URI = 'https://0.0.0.0:1000';
+const API_URI = 'https://price-scraper-irdo.onrender.com';
 
 const CheapestProducts = ({ searchQuery }) => {
   const [products, setProducts] = useState([]);
