@@ -34,9 +34,9 @@ const CheapestProducts = ({ searchQuery }) => {
       let response;
 
       if (searchQuery) { // If there's a search query, fetch matched data
-        response = await axios.get(`${API_URI}/api/aggregated/matched/getall?page=${currentPage}&sort=${selectedSortOption}&query=${searchQuery}`);
+        response = await axios.get(`https://price-scraper-irdo.onrender.com/api/aggregated/matched/getall?page=${currentPage}&sort=${selectedSortOption}&query=${searchQuery}`);
       } else { // Otherwise, fetch cheapest data
-        response = await axios.get(`${API_URI}/api/aggregated/cheapest/getall?page=${currentPage}&sort=${selectedSortOption}`);
+        response = await axios.get(`https://price-scraper-irdo.onrender.com/api/aggregated/cheapest/getall?page=${currentPage}&sort=${selectedSortOption}`);
       }
 
       const productsData = response.data;
