@@ -21,7 +21,7 @@ const ProcessorOptions = ({ selectedBrand, selectedProcessors, onSelectProcessor
 
   const fetchProcessorOptions = async (brand) => {
     try {
-      const response = await axios.get(`${API_URI}/api/aggregated/processor-options/getall?brand=${brand}`);
+      const response = await axios.get(`https://price-scraper-irdo.onrender.com/api/aggregated/processor-options/getall?brand=${brand}`);
       setProcessorOptions(response.data.processorOptions);
     } catch (error) {
       console.error('Error fetching processor options:', error);

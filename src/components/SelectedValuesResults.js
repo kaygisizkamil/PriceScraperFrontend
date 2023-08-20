@@ -38,7 +38,7 @@ const SelectedValuesResults = ({ selectedValues }) => {
           sort: selectedSortOption,
         }).toString();
 
-        const response = await axios.get(`${API_URI}/api/aggregated/sidebar/getall?${queryString}`);
+        const response = await axios.get(`https://price-scraper-irdo.onrender.com/api/aggregated/sidebar/getall?${queryString}`);
         const data = response.data;
         setResults(data);
         setHasMoreProducts(data.length >= itemsPerPage);

@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URI = '`https://price-scraper-irdo.onrender.com';
 const BrandFilter = ({ brands, onSelectBrand }) => {
   const [availableBrands, setAvailableBrands] = useState([]);
   
@@ -12,7 +11,7 @@ const BrandFilter = ({ brands, onSelectBrand }) => {
 
   const fetchBrands = async () => {
     try {
-      const response = await axios.get(`${API_URI}/api/aggregated/checkbox-options/getall`);
+      const response = await axios.get(`https://price-scraper-irdo.onrender.com/api/aggregated/checkbox-options/getall`);
       setAvailableBrands(response.data.brands);
     } catch (error) {
       console.error('Error fetching brands:', error);

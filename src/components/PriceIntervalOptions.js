@@ -14,7 +14,7 @@ const PriceIntervalOptions = ({ selectedBrand, onSelectPriceInterval }) => {
 
   const fetchPriceInterval = async (brand) => {
     try {
-      const response = await axios.get(`${API_URI}/api/aggregated/price-range/get?brand=${brand}`);
+      const response = await axios.get(`https://price-scraper-irdo.onrender.com/api/aggregated/price-range/get?brand=${brand}`);
       setPriceInterval(response.data);
       setSelectedSliderValue(response.data.minPrice); // Set the selected value to the minimum value from the database
     } catch (error) {

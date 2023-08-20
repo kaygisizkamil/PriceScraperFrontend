@@ -19,7 +19,7 @@ const RamOptions = ({ selectedBrand, selectedRams, onSelectRam }) => {
 
   const fetchRamOptions = async (brand) => {
     try {
-      const response = await axios.get(`${API_URI}/api/aggregated/ram-options/getall?brand=${brand}`);
+      const response = await axios.get(`https://price-scraper-irdo.onrender.com/api/aggregated/ram-options/getall?brand=${brand}`);
       setRamOptions(response.data.ramOptions);
     } catch (error) {
       console.error('Error fetching RAM options:', error);

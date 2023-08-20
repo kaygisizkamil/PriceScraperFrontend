@@ -20,7 +20,7 @@ const ScreenSizeOptions = ({ selectedBrand, selectedScreenSizes, onSelectScreenS
 
   const fetchScreenSizeOptions = async (brand) => {
     try {
-      const response = await axios.get(`${API_URI}/api/aggregated/screen-size-options/getall?brand=${brand}`);
+      const response = await axios.get(`https://price-scraper-irdo.onrender.com/api/aggregated/screen-size-options/getall?brand=${brand}`);
       setScreenSizeOptions(response.data.screenSizeOptions);
     } catch (error) {
       console.error('Error fetching screen size options:', error);
