@@ -4,7 +4,7 @@ import axios from 'axios';
 
 //const API_URI = 'https://dpg-cjfvl8k1ja0c73e36sr0-a.oregon-postgres.render.com';
 
-const API_URI='postgres://admin:80s7caMIowdQutwg7MxwBmaRnIPJ86ri@dpg-cjfvl8k1ja0c73e36sr0-a.oregon-postgres.render.com/final_project_f04r'
+const API_URI='https://price-scraper-irdo.onrender.com'
 const ProcessorOptions = ({ selectedBrand, selectedProcessors, onSelectProcessor }) => {
   const [processorOptions, setProcessorOptions] = useState([]);
 
