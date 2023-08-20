@@ -86,6 +86,9 @@ const BrandFilterContainer = () => {
   const handleShowSelectedValues = () => {
     setShowSelectedValues(true);
   };
+  const handleResetToMainPage = () => {
+    window.location.reload(); // Reload the page to reset all state
+  };
 
   return (
     <div className="container-fluid">
@@ -94,6 +97,8 @@ const BrandFilterContainer = () => {
         selectedRams={selectedRams}
         onSearchSubmit={handleSearchSubmit}
         setSearchQuery={setSearchQuery}
+        onResetToMainPage={handleResetToMainPage} // Pass the handler to the Navbar
+
     />
       <div className="row">
         <div className="col-md-2 sidenav" style={{ marginTop: '40px' }}>
