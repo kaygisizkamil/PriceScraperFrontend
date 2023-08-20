@@ -95,7 +95,7 @@ const CheapestProducts = ({ searchQuery }) => {
                   <h5 className="card-title">{product.name}</h5>
                   <p className="card-text product-details" style={{ fontSize: '0.8rem' }}>
                     <span className="text-muted">Ürün:</span> {product.product_name} <br/>
-                    <span className="text-muted">Marka:</span> {product.brand_name} TL <br/>
+                    <span className="text-muted">Marka:</span> {product.brand_name}<br/>
                     <span className="text-muted">Fiyat:</span> {product.price} TL <br/>
                     <span className="text-muted">Kaynak:</span> {product.fromWhere} <br/>
                     <span className="text-muted">İşlemci:</span> {product.cpu} <br/>
