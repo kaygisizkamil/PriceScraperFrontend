@@ -18,7 +18,16 @@ const Navbar = ({ onSearchSubmit }) => {
     <div className="navbar-container" >
       <nav className="navbar navbar-expand-lg navbar-dark fixed-top"  style={{ background: "BLACK" }}>
         <div className="container">
-          <a className="navbar-brand" href="#">Pc Ara</a>
+        <a
+          className="navbar-brand"
+          href="#"
+          onClick={(e) => {
+            e.preventDefault(); // Prevent default navigation behavior
+            window.location.reload(); // Refresh the page
+          }}
+        >
+          Pc Ara
+        </a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
